@@ -1,5 +1,4 @@
 # ⚙️ Bug fixes and Improvements
 
-- Added second WorkerLess config with Google DoH for circumstances which Cloudflare is blocked.
-- Fixed Xray Fake DNS
-- Updated Wizard tutorial.
+- Refactored
+- Try to fix 1101 #987

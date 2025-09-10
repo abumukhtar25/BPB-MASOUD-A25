@@ -12,7 +12,7 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 🌟 If you found **BPB Panel** valuable, Your donations make all the difference 🌟
 
 ```title="USDT (BEP20)"
-0x111EFF917E7cf4b0BfC99Edffd8F1AbC2b23d158
+0xbdf15d41C56f861f25b2b11C835bd45dfD5b792F
 ```
 
 ## Features
@@ -48,7 +48,7 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 |     **v2rayN**      | 7.12.5 or higher | :material-check: | :material-check: |
 |   **v2rayN-PRO**    |  1.9 or higher   | :material-check: | :material-check: |
 |      **Husi**       |                  | :material-close: | :material-close: |
-|    **Sing-box**     | 1.11.2 or higher | :material-close: | :material-close: |
+|    **Sing-box**     | 1.12.0 or higher | :material-check: | :material-close: |
 |    **Streisand**    | 1.6.48 or higher | :material-check: | :material-check: |
 |      **V2Box**      |                  | :material-close: | :material-close: |
 |  **Shadowrocket**   |                  | :material-close: | :material-close: |

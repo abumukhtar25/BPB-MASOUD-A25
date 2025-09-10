@@ -19,7 +19,7 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 ### USDT (BEP20)
 
 ```text
-0x111EFF917E7cf4b0BfC99Edffd8F1AbC2b23d158
+0xbdf15d41C56f861f25b2b11C835bd45dfD5b792F
 ```
 
 ## Features
@@ -54,8 +54,8 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 |     **v2rayNG**     | 1.10.2 or higher | :heavy_check_mark: | :heavy_check_mark: |
 |     **v2rayN**      | 7.12.5 or higher | :heavy_check_mark: | :heavy_check_mark: |
 |   **v2rayN-PRO**    |  1.9 or higher   | :heavy_check_mark: | :heavy_check_mark: |
-|      **Husi**       |                  |        :x:         |        :x:         |
-|    **Sing-box**     | 1.11.2 or higher |        :x:         |        :x:         |
+|      **Husi**       |                  | :heavy_check_mark: |        :x:         |
+|    **Sing-box**     | 1.12.0 or higher | :heavy_check_mark: |        :x:         |
 |    **Streisand**    | 1.6.48 or higher | :heavy_check_mark: | :heavy_check_mark: |
 |      **V2Box**      |                  |        :x:         |        :x:         |
 |  **Shadowrocket**   |                  |        :x:         |        :x:         |
@@ -68,7 +68,6 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 |   **AmneziaVPN**    |                  |        :x:         | :heavy_check_mark: |
 |    **WG Tunnel**    |                  |        :x:         | :heavy_check_mark: |
 
-
 ## Environment variables
 
 |   Variable   |               Usage                |
@@ -76,6 +75,7 @@ This project is aimed to provide a user panel to access FREE, SECURE and PRIVATE
 |   **UUID**   |             VLESS UUID             |
 | **TR_PASS**  |          Trojan Password           |
 | **PROXY_IP** | Proxy IP or domain (VLESS, Trojan) |
+|  **PREFIX**  |   NAT64 Prefixes (VLESS, Trojan)   |
 | **SUB_PATH** |         Subscriptions' URI         |
 | **FALLBACK** |  Fallback domain (VLESS, Trojan)   |
 | **DOH_URL**  |              Core DOH              |

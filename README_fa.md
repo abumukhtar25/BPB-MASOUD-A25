@@ -19,7 +19,7 @@
 ### USDT (BEP20)
 
 ```text
-0x111EFF917E7cf4b0BfC99Edffd8F1AbC2b23d158
+0xbdf15d41C56f861f25b2b11C835bd45dfD5b792F
 ```
 
 ## ویژگی‌ها
@@ -83,8 +83,8 @@
     </tr>
     <tr>
       <td><b>Sing-box</b></td>
-      <td>1.11.2 و بالاتر</td>
-      <td>❌</td>
+      <td>1.12.0 و بالاتر</td>
+      <td>✔️</td>
       <td>❌</td>
     </tr>
     <tr>
@@ -176,6 +176,10 @@
     <tr>
       <td><b>PROXY_IP</b></td>
       <td>Proxy IP برای VLESS و Trojan</td>
+    </tr>
+    <tr>
+      <td><b>PREFIX</b></td>
+      <td>NAT64 Prefix برای VLESS و Trojan</td>
     </tr>
     <tr>
       <td><b>SUB_PATH</b></td>

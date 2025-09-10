@@ -38,8 +38,12 @@ export async function handlePanel(request, env) {
 }
 
 export async function handleError(error) {
-    const message = encodeURIComponent(error.message);
-    return Response.redirect(`${globalThis.urlOrigin}/error?message=${message}`, 302);
+    const html = hexToString(__ERROR_HTML_CONTENT__).replace('__ERROR_MESSAGE__', error.message);
+
+    return new Response(html, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html' }
+    });
 }
 
 export async function handleLogin(request, env) {
@@ -60,7 +64,7 @@ export async function handleSubscriptions(request, env) {
         case `/sub/full-normal/${subPath}`:
             switch (client) {
                 case 'sfa':
-                    return await getSingBoxCustomConfig(env);
+                    return await getSingBoxCustomConfig(env, false);
                 case 'clash':
                     return await getClashNormalConfig(env);
                 case 'xray':
@@ -70,8 +74,14 @@ export async function handleSubscriptions(request, env) {
             }
 
         case `/sub/fragment/${subPath}`:
-            if (client === 'hiddify-frag') return await getNormalConfigs(true);
-            return await getXrayCustomConfigs(env, true);
+            switch (client) {
+                case 'sfa':
+                    return await getSingBoxCustomConfig(env, true);
+                case 'hiddify-frag':
+                    return await getNormalConfigs(true);
+                default:
+                    return await getXrayCustomConfigs(env, true);
+            }
 
         case `/sub/warp/${subPath}`:
             switch (client) {
@@ -94,6 +104,7 @@ export async function handleSubscriptions(request, env) {
                 case 'hiddify-pro':
                     return await getHiddifyWarpConfigs(true);
                 case 'xray-knocker':
+                case 'xray-pro':
                     return await getXrayWarpConfigs(request, env, true);
                 default:
                     break;
@@ -195,7 +206,7 @@ async function getWarpConfigs(request, env) {
 
     try {
         warpEndpoints.forEach((endpoint, index) => {
-            zip.file(`BPB-Warp-${index + 1}.conf`, trimLines(
+            zip.file(`${atob('QlBC')}-Warp-${index + 1}.conf`, trimLines(
                 `[Interface]
                 PrivateKey = ${privateKey}
                 Address = 172.16.0.2/32, ${warpIPv6}
@@ -215,7 +226,7 @@ async function getWarpConfigs(request, env) {
         return new Response(arrayBuffer, {
             headers: {
                 "Content-Type": "application/zip",
-                "Content-Disposition": `attachment; filename="BPB-Warp-${isPro ? "Pro-" : ""}configs.zip"`,
+                "Content-Disposition": `attachment; filename="${atob('QlBC')}-Warp-${isPro ? "Pro-" : ""}configs.zip"`,
             },
         });
     } catch (error) {
@@ -240,7 +251,7 @@ async function renderPanel(request, env) {
         if (!auth) return Response.redirect(`${globalThis.urlOrigin}/login`, 302);
     }
 
-    const html = __PANEL_HTML_CONTENT__.replace(/__PANEL_VERSION__/g, globalThis.panelVersion);
+    const html = hexToString(__PANEL_HTML_CONTENT__);
     return new Response(html, {
         headers: { 'Content-Type': 'text/html' }
     });
@@ -250,24 +261,16 @@ async function renderLogin(request, env) {
     const auth = await Authenticate(request, env);
     if (auth) return Response.redirect(`${urlOrigin}/panel`, 302);
 
-    const html = __LOGIN_HTML_CONTENT__.replace(/__PANEL_VERSION__/g, globalThis.panelVersion);
+    const html = hexToString(__LOGIN_HTML_CONTENT__);
     return new Response(html, {
         headers: { 'Content-Type': 'text/html' }
     });
 }
 
 export async function renderSecrets() {
-    const html = __SECRETS_HTML_CONTENT__.replace(/__PANEL_VERSION__/g, globalThis.panelVersion);
+    const html = hexToString(__SECRETS_HTML_CONTENT__);
     return new Response(html, {
         headers: { 'Content-Type': 'text/html' },
-    });
-}
-
-export async function renderError() {
-    const html = __ERROR_HTML_CONTENT__.replace(/__PANEL_VERSION__/g, globalThis.panelVersion);
-    return new Response(html, {
-        status: 200,
-        headers: { 'Content-Type': 'text/html' }
     });
 }
 
@@ -298,4 +301,10 @@ export async function respond(success, status, message, body, customHeaders) {
             'Content-Type': message ? 'text/plain' : 'application/json'
         }
     });
+}
+
+function hexToString(hex) {
+    const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+    const decoder = new TextDecoder();
+    return decoder.decode(bytes);
 }
